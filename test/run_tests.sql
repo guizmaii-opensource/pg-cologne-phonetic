@@ -97,6 +97,9 @@ BEGIN
   ASSERT cologne_phonetic('O''Brien') = cologne_phonetic('OBrien');
   ASSERT cologne_phonetic('Meyer-Schmidt') = cologne_phonetic('MeyerSchmidt');
   ASSERT cologne_phonetic('François') = cologne_phonetic('Francois');
+  ASSERT cologne_phonetic('Mülhler')  = cologne_phonetic('Müller');    -- H does not separate identical codes
+  ASSERT cologne_phonetic('Hoffmann') = cologne_phonetic('Hofmann');
+  ASSERT cologne_phonetic('Mama')     <> cologne_phonetic('Mam');       -- a vowel does: 66 vs 6
 
   ASSERT cologne_phonetic('Müller')  <> cologne_phonetic('Meyer');
   ASSERT cologne_phonetic('Schmidt') <> cologne_phonetic('Schneider');
