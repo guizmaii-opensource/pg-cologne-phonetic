@@ -1,0 +1,8 @@
+[package]
+name = "rphonetic-corpus"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[dependencies]
+rphonetic = "=3.1.0"
