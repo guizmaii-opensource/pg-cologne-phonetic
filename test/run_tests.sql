@@ -97,9 +97,15 @@ BEGIN
   ASSERT cologne_phonetic('O''Brien') = cologne_phonetic('OBrien');
   ASSERT cologne_phonetic('Meyer-Schmidt') = cologne_phonetic('MeyerSchmidt');
   ASSERT cologne_phonetic('François') = cologne_phonetic('Francois');
-  ASSERT cologne_phonetic('Mülhler')  = cologne_phonetic('Müller');    -- H does not separate identical codes
+
+  -- Cases Apache Commons Codec fixed under a ticket, so a reader can look up the discussion.
+  ASSERT cologne_phonetic('Aychlmajr') = '04567';                        -- CODEC-122
+  ASSERT cologne_phonetic('shch') = '84';                                -- CODEC-254: H is transparent
+  ASSERT cologne_phonetic('xch') = '484';                                -- CODEC-255: X then CH
+  ASSERT cologne_phonetic('Mülhler')  = cologne_phonetic('Müller');    -- CODEC-317: H does not separate identical codes
+  ASSERT cologne_phonetic('Eichkamp') = cologne_phonetic('Eichamp');    -- CODEC-317: CH codes 4, a K after it collapses into it
   ASSERT cologne_phonetic('Hoffmann') = cologne_phonetic('Hofmann');
-  ASSERT cologne_phonetic('Mama')     <> cologne_phonetic('Mam');       -- a vowel does: 66 vs 6
+  ASSERT cologne_phonetic('Hoffmann') = '0366';                          -- CODEC-317 went further and gives 036; a vowel does separate, see README
 
   ASSERT cologne_phonetic('Müller')  <> cologne_phonetic('Meyer');
   ASSERT cologne_phonetic('Schmidt') <> cologne_phonetic('Schneider');

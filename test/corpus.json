@@ -785,5 +785,15 @@
    "commons": "137", "rphonetic": "1337", "chosen": "rphonetic",
    "why": "a vowel (code 0) sits between two identical codes, so they are not adjacent and step 2 keeps both; Commons >= 1.22.0 (CODEC-317) collapses them"},
   {"input": "Cần", "expected": "86"},
-  {"input": "Kṛṣṇa", "expected": "4"}
+  {"input": "Kṛṣṇa", "expected": "4"},
+  {"input": "Eichkamp", "expected": "0461",
+   "commons": "0461", "rphonetic": "04461", "chosen": "commons",
+   "why": "H between identical codes yields nothing, so the codes are adjacent and step 2 collapses them; rphonetic keeps both"},
+  {"input": "Eichamp", "expected": "0461"},
+  {"input": "Bachgau", "expected": "14",
+   "commons": "14", "rphonetic": "144", "chosen": "commons",
+   "why": "H between identical codes yields nothing, so the codes are adjacent and step 2 collapses them; rphonetic keeps both"},
+  {"input": "Buchkremer", "expected": "14767",
+   "commons": "14767", "rphonetic": "144767", "chosen": "commons",
+   "why": "H between identical codes yields nothing, so the codes are adjacent and step 2 collapses them; rphonetic keeps both"}
 ]

@@ -76,3 +76,6 @@ Rhr	commons	H between identical codes yields nothing, so the codes are adjacent 
 Rohr	rphonetic	a vowel (code 0) sits between two identical codes, so they are not adjacent and step 2 keeps both; Commons >= 1.22.0 (CODEC-317) collapses them
 Hoﬀmann	rphonetic	a vowel (code 0) sits between two identical codes, so they are not adjacent and step 2 keeps both; Commons >= 1.22.0 (CODEC-317) collapses them
 Pfeiﬀer	rphonetic	a vowel (code 0) sits between two identical codes, so they are not adjacent and step 2 keeps both; Commons >= 1.22.0 (CODEC-317) collapses them
+Eichkamp	commons	H between identical codes yields nothing, so the codes are adjacent and step 2 collapses them; rphonetic keeps both
+Bachgau	commons	H between identical codes yields nothing, so the codes are adjacent and step 2 collapses them; rphonetic keeps both
+Buchkremer	commons	H between identical codes yields nothing, so the codes are adjacent and step 2 collapses them; rphonetic keeps both
