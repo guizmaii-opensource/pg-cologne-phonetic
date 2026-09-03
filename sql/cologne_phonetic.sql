@@ -49,7 +49,7 @@ DECLARE
   n    int;
   ch   text;
   nxt  text;          -- the next character, letter or not; '-' past the end
-  prev text := '-';   -- the last letter that was coded; non-letters do not update it
+  prev text := '-';   -- the previous A-Z letter, H included; non-letters do not update it
   code text;
   raw  text := '';    -- step 1 and 2 of the algorithm: one code per letter, adjacent duplicates collapsed
 BEGIN

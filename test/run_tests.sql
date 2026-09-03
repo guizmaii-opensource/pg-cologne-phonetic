@@ -75,7 +75,7 @@ END $$;
 DO $$
 DECLARE p pg_proc;
 BEGIN
-  SELECT * INTO STRICT p FROM pg_proc WHERE proname = 'cologne_phonetic' AND pronamespace = 'public'::regnamespace;
+  SELECT * INTO STRICT p FROM pg_proc WHERE oid = 'cologne_phonetic(text)'::regprocedure;  -- whatever schema search_path put it in
   ASSERT p.provolatile = 'i', 'function must be IMMUTABLE';
   ASSERT p.proparallel = 's', 'function must be PARALLEL SAFE';
   ASSERT p.proisstrict,       'function must be STRICT';
