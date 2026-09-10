@@ -1,0 +1,81 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    name: Corpus and contract tests on PostgreSQL 18
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:18
+        env:
+          POSTGRES_PASSWORD: postgres
+        ports: ['5432:5432']
+        options: >-
+          --health-cmd pg_isready --health-interval 5s --health-timeout 5s --health-retries 10 --health-start-period 10s
+    env:
+      PGHOST: localhost
+      PGUSER: postgres
+      PGPASSWORD: postgres
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install psql
+        run: sudo apt-get update -q && sudo apt-get install -y -q postgresql-client
+      - name: Run test suite under C, German ICU and Turkish ICU collations
+        run: |
+          psql -v ON_ERROR_STOP=1 -c "CREATE DATABASE c_db LOCALE 'C' TEMPLATE template0"
+          psql -v ON_ERROR_STOP=1 -c "CREATE DATABASE de_db LOCALE_PROVIDER icu ICU_LOCALE 'de-DE' LOCALE 'C' TEMPLATE template0"
+          psql -v ON_ERROR_STOP=1 -c "CREATE DATABASE tr_db LOCALE_PROVIDER icu ICU_LOCALE 'tr-TR' LOCALE 'C' TEMPLATE template0"
+          for db in c_db de_db tr_db; do
+            echo "== $db"
+            psql -d "$db" -v ON_ERROR_STOP=1 -f test/run_tests.sql
+          done
+
+  guard:
+    name: Install file is rejected on PostgreSQL 17
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:17
+        env:
+          POSTGRES_PASSWORD: postgres
+        ports: ['5432:5432']
+        options: >-
+          --health-cmd pg_isready --health-interval 5s --health-timeout 5s --health-retries 10 --health-start-period 10s
+    env:
+      PGHOST: localhost
+      PGUSER: postgres
+      PGPASSWORD: postgres
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install psql
+        run: sudo apt-get update -q && sudo apt-get install -y -q postgresql-client
+      - name: Expect the version guard to fail loudly and create nothing
+        run: |
+          set +e
+          out=$(psql -v ON_ERROR_STOP=1 -f sql/cologne_phonetic.sql 2>&1)
+          status=$?
+          set -e
+          echo "$out"
+          test "$status" -ne 0
+          echo "$out" | grep -q 'cologne_phonetic requires PostgreSQL 18 or later, found 17'
+          test "$(psql -tAc "SELECT count(*) FROM pg_proc WHERE proname = 'cologne_phonetic'")" = 0
+
+  corpus:
+    name: test/corpus.json matches the generators
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Regenerate the corpus from both references
+        run: tools/generate_corpus.sh
+      - name: Committed corpus must be the regenerated one
+        run: git diff --exit-code -- test/corpus.json

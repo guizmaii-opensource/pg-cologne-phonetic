@@ -1,0 +1,81 @@
+# Recorded decisions for inputs where the two references disagree.
+# Format: <input> TAB <commons|rphonetic> TAB <why>
+# tools/generate_corpus.sh fails if a disagreement has no line here.
+#
+# Every disagreement so far comes from one place: what the "last emitted code" is after a vowel
+# or an H. Kölner Phonetik (Postel 1969; see the German Wikipedia article) is three steps:
+#   1. code every letter with the table;
+#   2. collapse runs of identical adjacent codes to one digit;
+#   3. drop every 0 except a leading one.
+# Step 2 runs before step 3, so two identical codes separated by a 0 stay two digits
+# (Hoffmann -> 0366), while two identical codes separated only by an H, which has no code at
+# all, are adjacent and collapse (Mülhler -> 657).
+#
+# Apache Commons Codec >= 1.22.0 (CODEC-317) collapses in both situations (Hoffmann -> 036),
+# rphonetic 3.1.0 (a port of Commons <= 1.21) collapses in neither (Mülhler -> 6557).
+# Each line below picks the reference that follows the three steps for that input. Choosing
+# 0366 for Hoffmann also keeps codes compatible with 15 years of Commons Codec releases and
+# with the examples published for the algorithm.
+Gößmann	rphonetic	a vowel (code 0) sits between two identical codes, so they are not adjacent and step 2 keeps both; Commons >= 1.22.0 (CODEC-317) collapses them
+Goessmann	rphonetic	a vowel (code 0) sits between two identical codes, so they are not adjacent and step 2 keeps both; Commons >= 1.22.0 (CODEC-317) collapses them
+Hoffmann	rphonetic	a vowel (code 0) sits between two identical codes, so they are not adjacent and step 2 keeps both; Commons >= 1.22.0 (CODEC-317) collapses them
+Koch	rphonetic	a vowel (code 0) sits between two identical codes, so they are not adjacent and step 2 keeps both; Commons >= 1.22.0 (CODEC-317) collapses them
+Neumann	rphonetic	a vowel (code 0) sits between two identical codes, so they are not adjacent and step 2 keeps both; Commons >= 1.22.0 (CODEC-317) collapses them
+Zimmermann	rphonetic	a vowel (code 0) sits between two identical codes, so they are not adjacent and step 2 keeps both; Commons >= 1.22.0 (CODEC-317) collapses them
+Hartmann	rphonetic	a vowel (code 0) sits between two identical codes, so they are not adjacent and step 2 keeps both; Commons >= 1.22.0 (CODEC-317) collapses them
+Lehmann	rphonetic	a vowel (code 0) sits between two identical codes, so they are not adjacent and step 2 keeps both; Commons >= 1.22.0 (CODEC-317) collapses them
+Baumann	rphonetic	a vowel (code 0) sits between two identical codes, so they are not adjacent and step 2 keeps both; Commons >= 1.22.0 (CODEC-317) collapses them
+Schuster	rphonetic	a vowel (code 0) sits between two identical codes, so they are not adjacent and step 2 keeps both; Commons >= 1.22.0 (CODEC-317) collapses them
+Simon	rphonetic	a vowel (code 0) sits between two identical codes, so they are not adjacent and step 2 keeps both; Commons >= 1.22.0 (CODEC-317) collapses them
+Dietrich	rphonetic	a vowel (code 0) sits between two identical codes, so they are not adjacent and step 2 keeps both; Commons >= 1.22.0 (CODEC-317) collapses them
+Bergmann	rphonetic	a vowel (code 0) sits between two identical codes, so they are not adjacent and step 2 keeps both; Commons >= 1.22.0 (CODEC-317) collapses them
+Pfeiffer	rphonetic	a vowel (code 0) sits between two identical codes, so they are not adjacent and step 2 keeps both; Commons >= 1.22.0 (CODEC-317) collapses them
+Hofmann	rphonetic	a vowel (code 0) sits between two identical codes, so they are not adjacent and step 2 keeps both; Commons >= 1.22.0 (CODEC-317) collapses them
+Kaufmann	rphonetic	a vowel (code 0) sits between two identical codes, so they are not adjacent and step 2 keeps both; Commons >= 1.22.0 (CODEC-317) collapses them
+Kauffmann	rphonetic	a vowel (code 0) sits between two identical codes, so they are not adjacent and step 2 keeps both; Commons >= 1.22.0 (CODEC-317) collapses them
+Kaufman	rphonetic	a vowel (code 0) sits between two identical codes, so they are not adjacent and step 2 keeps both; Commons >= 1.22.0 (CODEC-317) collapses them
+Cesar	rphonetic	a vowel (code 0) sits between two identical codes, so they are not adjacent and step 2 keeps both; Commons >= 1.22.0 (CODEC-317) collapses them
+Clemens	rphonetic	a vowel (code 0) sits between two identical codes, so they are not adjacent and step 2 keeps both; Commons >= 1.22.0 (CODEC-317) collapses them
+Klemens	rphonetic	a vowel (code 0) sits between two identical codes, so they are not adjacent and step 2 keeps both; Commons >= 1.22.0 (CODEC-317) collapses them
+Cicero	rphonetic	a vowel (code 0) sits between two identical codes, so they are not adjacent and step 2 keeps both; Commons >= 1.22.0 (CODEC-317) collapses them
+Celsius	rphonetic	a vowel (code 0) sits between two identical codes, so they are not adjacent and step 2 keeps both; Commons >= 1.22.0 (CODEC-317) collapses them
+Mönchengladbach	rphonetic	a vowel (code 0) sits between two identical codes, so they are not adjacent and step 2 keeps both; Commons >= 1.22.0 (CODEC-317) collapses them
+Buxtehude	rphonetic	a vowel (code 0) sits between two identical codes, so they are not adjacent and step 2 keeps both; Commons >= 1.22.0 (CODEC-317) collapses them
+Pfaff	rphonetic	a vowel (code 0) sits between two identical codes, so they are not adjacent and step 2 keeps both; Commons >= 1.22.0 (CODEC-317) collapses them
+Eberhard	rphonetic	a vowel (code 0) sits between two identical codes, so they are not adjacent and step 2 keeps both; Commons >= 1.22.0 (CODEC-317) collapses them
+Eberhardt	rphonetic	a vowel (code 0) sits between two identical codes, so they are not adjacent and step 2 keeps both; Commons >= 1.22.0 (CODEC-317) collapses them
+Detlef	rphonetic	a vowel (code 0) sits between two identical codes, so they are not adjacent and step 2 keeps both; Commons >= 1.22.0 (CODEC-317) collapses them
+Cuxhaven	rphonetic	a vowel (code 0) sits between two identical codes, so they are not adjacent and step 2 keeps both; Commons >= 1.22.0 (CODEC-317) collapses them
+Spedition	rphonetic	a vowel (code 0) sits between two identical codes, so they are not adjacent and step 2 keeps both; Commons >= 1.22.0 (CODEC-317) collapses them
+Städtler	rphonetic	a vowel (code 0) sits between two identical codes, so they are not adjacent and step 2 keeps both; Commons >= 1.22.0 (CODEC-317) collapses them
+Stadtler	rphonetic	a vowel (code 0) sits between two identical codes, so they are not adjacent and step 2 keeps both; Commons >= 1.22.0 (CODEC-317) collapses them
+Stettler	rphonetic	a vowel (code 0) sits between two identical codes, so they are not adjacent and step 2 keeps both; Commons >= 1.22.0 (CODEC-317) collapses them
+Mama	rphonetic	a vowel (code 0) sits between two identical codes, so they are not adjacent and step 2 keeps both; Commons >= 1.22.0 (CODEC-317) collapses them
+Papa	rphonetic	a vowel (code 0) sits between two identical codes, so they are not adjacent and step 2 keeps both; Commons >= 1.22.0 (CODEC-317) collapses them
+Bube	rphonetic	a vowel (code 0) sits between two identical codes, so they are not adjacent and step 2 keeps both; Commons >= 1.22.0 (CODEC-317) collapses them
+Bob	rphonetic	a vowel (code 0) sits between two identical codes, so they are not adjacent and step 2 keeps both; Commons >= 1.22.0 (CODEC-317) collapses them
+Puppe	rphonetic	a vowel (code 0) sits between two identical codes, so they are not adjacent and step 2 keeps both; Commons >= 1.22.0 (CODEC-317) collapses them
+Pupe	rphonetic	a vowel (code 0) sits between two identical codes, so they are not adjacent and step 2 keeps both; Commons >= 1.22.0 (CODEC-317) collapses them
+Lilli	rphonetic	a vowel (code 0) sits between two identical codes, so they are not adjacent and step 2 keeps both; Commons >= 1.22.0 (CODEC-317) collapses them
+Lili	rphonetic	a vowel (code 0) sits between two identical codes, so they are not adjacent and step 2 keeps both; Commons >= 1.22.0 (CODEC-317) collapses them
+Ruhr	rphonetic	a vowel (code 0) sits between two identical codes, so they are not adjacent and step 2 keeps both; Commons >= 1.22.0 (CODEC-317) collapses them
+Rur	rphonetic	a vowel (code 0) sits between two identical codes, so they are not adjacent and step 2 keeps both; Commons >= 1.22.0 (CODEC-317) collapses them
+RindfleischetikettierungsueberwachungsaufgabenuebertragungsgesetzRindfleischetikettierungsueberwachungsaufgabenuebertragungsgesetzRindfleischetikettierungsueberwachungsaufgabenuebertragungsgesetzRindf	rphonetic	a vowel (code 0) sits between two identical codes, so they are not adjacent and step 2 keeps both; Commons >= 1.22.0 (CODEC-317) collapses them
+François	rphonetic	a vowel (code 0) sits between two identical codes, so they are not adjacent and step 2 keeps both; Commons >= 1.22.0 (CODEC-317) collapses them
+x-y-z	rphonetic	a vowel (code 0) sits between two identical codes, so they are not adjacent and step 2 keeps both; Commons >= 1.22.0 (CODEC-317) collapses them
+Souza	rphonetic	a vowel (code 0) sits between two identical codes, so they are not adjacent and step 2 keeps both; Commons >= 1.22.0 (CODEC-317) collapses them
+Pereira	rphonetic	a vowel (code 0) sits between two identical codes, so they are not adjacent and step 2 keeps both; Commons >= 1.22.0 (CODEC-317) collapses them
+Lefèvre	rphonetic	a vowel (code 0) sits between two identical codes, so they are not adjacent and step 2 keeps both; Commons >= 1.22.0 (CODEC-317) collapses them
+Núñez	rphonetic	a vowel (code 0) sits between two identical codes, so they are not adjacent and step 2 keeps both; Commons >= 1.22.0 (CODEC-317) collapses them
+Nunez	rphonetic	a vowel (code 0) sits between two identical codes, so they are not adjacent and step 2 keeps both; Commons >= 1.22.0 (CODEC-317) collapses them
+Mülhler	commons	H between identical codes yields nothing, so the codes are adjacent and step 2 collapses them; rphonetic keeps both
+Müleler	rphonetic	a vowel (code 0) sits between two identical codes, so they are not adjacent and step 2 keeps both; Commons >= 1.22.0 (CODEC-317) collapses them
+bhb	commons	H between identical codes yields nothing, so the codes are adjacent and step 2 collapses them; rphonetic keeps both
+Bhb	commons	H between identical codes yields nothing, so the codes are adjacent and step 2 collapses them; rphonetic keeps both
+Rhr	commons	H between identical codes yields nothing, so the codes are adjacent and step 2 collapses them; rphonetic keeps both
+Rohr	rphonetic	a vowel (code 0) sits between two identical codes, so they are not adjacent and step 2 keeps both; Commons >= 1.22.0 (CODEC-317) collapses them
+Hoﬀmann	rphonetic	a vowel (code 0) sits between two identical codes, so they are not adjacent and step 2 keeps both; Commons >= 1.22.0 (CODEC-317) collapses them
+Pfeiﬀer	rphonetic	a vowel (code 0) sits between two identical codes, so they are not adjacent and step 2 keeps both; Commons >= 1.22.0 (CODEC-317) collapses them
+Eichkamp	commons	H between identical codes yields nothing, so the codes are adjacent and step 2 collapses them; rphonetic keeps both
+Bachgau	commons	H between identical codes yields nothing, so the codes are adjacent and step 2 collapses them; rphonetic keeps both
+Buchkremer	commons	H between identical codes yields nothing, so the codes are adjacent and step 2 collapses them; rphonetic keeps both

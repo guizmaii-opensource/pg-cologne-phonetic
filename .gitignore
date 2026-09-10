@@ -1,3 +1,6 @@
 .idea/
+.remember/
 
 pg-cologne-phonetic.md
+tools/.cache/
+tools/rphonetic/target/
